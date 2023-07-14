@@ -2,5 +2,8 @@
   "name": "manifest",
   "private": true,
   "license": "MIT",
-  "author": "Evan Fleet"
+  "author": "Evan Fleet",
+  "workspaces": [
+    "packages/*"
+  ]
 }
