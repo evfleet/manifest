@@ -1,0 +1,70 @@
+@import '@radix-ui/colors/gray.css';
+@import '@radix-ui/colors/gray-dark.css';
+
+@import '@radix-ui/colors/green.css';
+@import '@radix-ui/colors/green-dark.css';
+
+/* || VARIABLES */
+
+:root {
+  --header-height: 60px;
+}
+
+/* || RESET */
+/* https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/* || TYPOGRAPHY */
+
+body {
+  font-family: 'Inter Variable', sans-serif;
+}
+
+/* || SITEWIDE */
+
+body {
+  min-height: 100dvh;
+  background-color: var(--gray-2);
+}
+
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-height);
+  background-color: var(--gray-1);
+  border-bottom: 2px solid var(--gray-6);
+}
+
+.site-content {
+  margin-top: var(--header-height);
+  min-height: calc(100dvh - var(--header-height));
+}
+
+

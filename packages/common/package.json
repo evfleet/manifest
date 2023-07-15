@@ -1,0 +1,5 @@
+{
+  "name": "@manifest/common",
+  "version": "0.1.0",
+  "types": "interfaces/index.d.ts"
+}
