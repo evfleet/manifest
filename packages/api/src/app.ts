@@ -1,8 +1,8 @@
 import express from "express";
 import pino from "pino-http";
 
-import { boardRouter } from "./features/board";
-import logger from "./lib/logger";
+import { boardRouter } from "@/features/board";
+import logger from "@/lib/logger";
 
 const app = express();
 
