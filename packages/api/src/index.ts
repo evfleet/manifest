@@ -2,7 +2,7 @@ import "dotenv/config";
 import http from "http";
 
 import app from "./app";
-import logger from "./config/logger";
+import logger from "./lib/logger";
 
 const start = async () => {
   try {
