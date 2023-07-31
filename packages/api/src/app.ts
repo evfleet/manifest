@@ -8,6 +8,6 @@ const app = express();
 
 app.use(pino({ logger }));
 
-app.use("/board", boardRouter);
+app.use("/boards", boardRouter);
 
 export default app;

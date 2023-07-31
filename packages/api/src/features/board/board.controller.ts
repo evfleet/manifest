@@ -2,6 +2,16 @@ import { NextFunction, Request, Response } from "express";
 
 import boardService from "./board.service";
 
+const createBoard = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const result = await boardService.create();
+
+    return res.json(result);
+  } catch (err) {
+    next(err);
+  }
+};
+
 const getBoard = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const result = await boardService.getBoardById("1");
@@ -13,5 +23,6 @@ const getBoard = async (req: Request, res: Response, next: NextFunction) => {
 };
 
 export default {
+  createBoard,
   getBoard,
 };
