@@ -6,6 +6,8 @@ import logger from "@/lib/logger";
 
 const app = express();
 
+app.use(express.json());
+
 app.use(pino({ logger }));
 
 app.use("/boards", boardRouter);
