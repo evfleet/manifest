@@ -4,7 +4,7 @@ import database from "@/database";
 import { Board, boards, lists } from "@/database/schema";
 import nanoid from "@/lib/nanoid";
 
-const create = async ({ name }: Omit<Board, "id">) => {
+const createBoard = async ({ name }: Omit<Board, "id">) => {
   const result = await database.transaction(async (tx) => {
     const [board] = await tx
       .insert(boards)
@@ -56,7 +56,7 @@ const create = async ({ name }: Omit<Board, "id">) => {
   return result;
 };
 
-const getById = async (id: string) => {
+const getBoardById = async (id: string) => {
   return database.query.boards.findFirst({
     where: eq(boards.id, id),
     with: {
@@ -65,7 +65,17 @@ const getById = async (id: string) => {
   });
 };
 
+const updateBoard = async (id: string, { name }: Omit<Board, "id">) => {
+  return database.update(boards).set({ name }).where(eq(boards.id, id));
+};
+
+const deleteBoard = async (id: string) => {
+  return database.delete(boards).where(eq(boards.id, id));
+};
+
 export default {
-  create,
-  getById,
+  createBoard,
+  getBoardById,
+  updateBoard,
+  deleteBoard,
 };
