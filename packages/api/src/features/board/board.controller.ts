@@ -1,14 +1,13 @@
 import { NextFunction, Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
-import { z } from "zod";
 
 import boardService from "./board.service";
 import boardValidations from "./board.validations";
 
 const createBoard = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { body } = req as z.infer<typeof boardValidations.createBoardSchema>;
-    const result = await boardService.create(body);
+    const { body } = boardValidations.createBoardSchema.parse(req);
+    const result = await boardService.createBoard(body);
 
     return res.status(StatusCodes.CREATED).json(result);
   } catch (err) {
@@ -18,9 +17,32 @@ const createBoard = async (req: Request, res: Response, next: NextFunction) => {
 
 const getBoard = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const result = await boardService.getBoardById("1");
+    const { params } = boardValidations.getBoardSchema.parse(req);
+    const result = await boardService.getBoardById(params.boardId);
 
-    return res.json(result);
+    return res.status(StatusCodes.OK).json(result);
+  } catch (err) {
+    next(err);
+  }
+};
+
+const updateBoard = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { body, params } = boardValidations.updateBoardSchema.parse(req);
+    await boardService.updateBoard(params.boardId, body);
+
+    return res.status(StatusCodes.NO_CONTENT).send();
+  } catch (err) {
+    next(err);
+  }
+};
+
+const deleteBoard = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { params } = boardValidations.getBoardSchema.parse(req);
+    await boardService.deleteBoard(params.boardId);
+
+    return res.status(StatusCodes.NO_CONTENT).send();
   } catch (err) {
     next(err);
   }
@@ -29,4 +51,6 @@ const getBoard = async (req: Request, res: Response, next: NextFunction) => {
 export default {
   createBoard,
   getBoard,
+  updateBoard,
+  deleteBoard,
 };

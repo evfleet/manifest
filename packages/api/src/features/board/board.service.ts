@@ -1,17 +1,25 @@
 import { Board } from "@/database/schema";
 import boardRepository from "./board.repository";
 
-const create = async (params: Omit<Board, "id">) => {
-  return boardRepository.create(params);
+const createBoard = async (params: Omit<Board, "id">) => {
+  return boardRepository.createBoard(params);
 };
 
 const getBoardById = async (id: string) => {
-  const board = await boardRepository.getById(id);
+  return boardRepository.getBoardById(id);
+};
 
-  return board;
+const updateBoard = async (id: string, params: Omit<Board, "id">) => {
+  return boardRepository.updateBoard(id, params);
+};
+
+const deleteBoard = async (id: string) => {
+  return boardRepository.deleteBoard(id);
 };
 
 export default {
-  create,
+  createBoard,
   getBoardById,
+  updateBoard,
+  deleteBoard,
 };

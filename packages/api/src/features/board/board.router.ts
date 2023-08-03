@@ -1,16 +1,12 @@
 import { Router } from "express";
 
-import validate from "@/middleware/validate";
 import boardController from "./board.controller";
-import boardValidations from "./board.validations";
 
 const boardRouter = Router();
 
-boardRouter.get("/:id", boardController.getBoard);
-boardRouter.post(
-  "/",
-  validate(boardValidations.createBoardSchema),
-  boardController.createBoard
-);
+boardRouter.post("/", boardController.createBoard);
+boardRouter.get("/:boardId", boardController.getBoard);
+boardRouter.patch("/:boardId", boardController.updateBoard);
+boardRouter.delete("/:boardId", boardController.deleteBoard);
 
 export default boardRouter;
