@@ -6,6 +6,13 @@ const createBoardSchema = z.object({
   }),
 });
 
+const getBoardSchema = z.object({
+  params: z.object({
+    boardId: z.string(),
+  }),
+});
+
 export default {
   createBoardSchema,
+  getBoardSchema,
 };

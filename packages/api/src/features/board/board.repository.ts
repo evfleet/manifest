@@ -1,9 +1,10 @@
+import { eq } from "drizzle-orm";
+
 import database from "@/database";
 import { Board, boards, lists } from "@/database/schema";
 import nanoid from "@/lib/nanoid";
 
-const create = async (params: Omit<Board, "id">) => {
-  const { name } = params;
+const create = async ({ name }: Omit<Board, "id">) => {
   const result = await database.transaction(async (tx) => {
     const [board] = await tx
       .insert(boards)
@@ -56,7 +57,12 @@ const create = async (params: Omit<Board, "id">) => {
 };
 
 const getById = async (id: string) => {
-  return null;
+  return database.query.boards.findFirst({
+    where: eq(boards.id, id),
+    with: {
+      lists: true,
+    },
+  });
 };
 
 export default {
