@@ -131,3 +131,6 @@ dist
 
 # local files
 notes.txt
+
+# sqlite files
+*.sqlite

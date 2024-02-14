@@ -1,6 +1,13 @@
 import { Request, Response } from "express";
 
-function authenticate(req: Request, res: Response) {
+import { db } from "../../config/sqlite.js";
+
+async function authenticate(req: Request, res: Response) {
+  const sql = db.prepare("SELECT Date('now')");
+  const result = sql.all();
+
+  console.log("result", result);
+
   res.send("Current user");
 }
 
