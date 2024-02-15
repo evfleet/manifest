@@ -9,6 +9,10 @@ export async function build() {
 
   app.use(pinoHttp({ logger }));
 
+  app.get("/", (req, res) => {
+    res.send("Hello World!");
+  });
+
   app.use("/auth", authRouter);
 
   return app;

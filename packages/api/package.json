@@ -5,7 +5,8 @@
   "author": "Evan Fleet",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/index.ts | pino-pretty"
+    "dev": "tsx watch src/index.ts | pino-pretty",
+    "test:integration": "vitest --dir test/integration"
   },
   "dependencies": {
     "@lucia-auth/adapter-sqlite": "^3.0.0",
@@ -20,8 +21,11 @@
     "@types/better-sqlite3": "^7.6.9",
     "@types/express": "^4.17.21",
     "@types/node": "^20.11.17",
+    "@types/supertest": "^6.0.2",
     "pino-pretty": "^10.3.1",
+    "supertest": "^6.3.4",
     "tsx": "^4.7.1",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.2"
   }
 }
