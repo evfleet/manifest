@@ -5,8 +5,7 @@
   "author": "Evan Fleet",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/index.ts | pino-pretty",
-    "database:migrate": "tsx database/migrate.ts"
+    "dev": "tsx watch src/index.ts | pino-pretty"
   },
   "dependencies": {
     "@lucia-auth/adapter-sqlite": "^3.0.0",

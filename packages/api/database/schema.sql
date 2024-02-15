@@ -1,8 +1,8 @@
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users  (
     id TEXT NOT NULL PRIMARY KEY
 );
 
-CREATE TABLE sessions (
+CREATE TABLE IF NOT EXISTS sessions (
     id TEXT NOT NULL PRIMARY KEY,
     expires_at INTEGER NOT NULL,
     user_id TEXT NOT NULL,
