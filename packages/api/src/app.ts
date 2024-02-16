@@ -2,6 +2,7 @@ import express from "express";
 import { pinoHttp } from "pino-http";
 
 import { logger } from "./config/logger.js";
+import { errorHandler } from "./middleware/error-handler.js";
 import { authRouter } from "./modules/auth/auth.router.js";
 
 export async function build() {
@@ -14,6 +15,8 @@ export async function build() {
   });
 
   app.use("/auth", authRouter);
+
+  app.use(errorHandler);
 
   return app;
 }
