@@ -8,7 +8,14 @@ import { authRouter } from "./modules/auth/auth.router.js";
 export async function build() {
   const app = express();
 
-  app.use(pinoHttp({ logger }));
+  app.use(express.json());
+
+  app.use(
+    pinoHttp({
+      logger,
+      autoLogging: process.env.NODE_ENV !== "test",
+    })
+  );
 
   app.get("/", (req, res) => {
     res.send("Hello World!");

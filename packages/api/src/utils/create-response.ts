@@ -1,15 +1,6 @@
-type APIStatus = "success" | "fail" | "error";
-
-type APIParams = {
-  status: APIStatus;
-  message?: string;
-  data?: any;
-  code?: number;
-};
-
 type SuccessResponse = {
   status: "success";
-  data: any;
+  data?: any;
 };
 
 type FailResponse = {
@@ -24,35 +15,29 @@ type ErrorResponse = {
   code?: number;
 };
 
-export type APIResponse = SuccessResponse | FailResponse | ErrorResponse;
+export function createSuccessResponse(data?: any): SuccessResponse {
+  return {
+    status: "success",
+    data,
+  };
+}
 
-export function createResponse({
-  status,
-  data,
-  message,
-  code,
-}: APIParams): APIResponse {
-  switch (status) {
-    case "success":
-      return {
-        status,
-        data,
-      };
-    case "fail":
-      return {
-        status,
-        data,
-      };
-    case "error":
-      if (!message) {
-        throw new Error("Error message is required");
-      }
+export function createFailResponse(data: any): FailResponse {
+  return {
+    status: "fail",
+    data,
+  };
+}
 
-      return {
-        status,
-        message,
-        data,
-        code,
-      };
-  }
+export function createErrorResponse(
+  message: string,
+  data?: any,
+  code?: number
+): ErrorResponse {
+  return {
+    status: "error",
+    message,
+    data,
+    code,
+  };
 }
