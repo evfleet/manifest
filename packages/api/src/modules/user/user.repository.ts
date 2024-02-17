@@ -1,7 +1,7 @@
 import { db } from "../../config/sqlite.js";
-import { RegisterInput } from "./auth.validations.js";
+import { CreateUser } from "./user.validations.js";
 
-async function register({ email, password }: RegisterInput) {
+async function create({ email, password }: CreateUser) {
   const sql = db.prepare(
     "INSERT INTO users (email, hashed_password) VALUES (?, ?)"
   );
@@ -15,5 +15,5 @@ async function register({ email, password }: RegisterInput) {
 }
 
 export default {
-  register,
+  create,
 };

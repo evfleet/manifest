@@ -4,15 +4,15 @@ import { StatusCodes } from "http-status-codes";
 import { Argon2id } from "oslo/password";
 
 import { createSuccessResponse } from "../../utils/create-response.js";
-import authRepository from "./auth.repository.js";
-import { registerSchema } from "./auth.validations.js";
+import userRepository from "../user/user.repository.js";
+import { createUserSchema } from "../user/user.validations.js";
 
 async function register(req: Request, res: Response, next: NextFunction) {
   try {
-    const { email, password } = registerSchema.parse(req.body);
+    const { email, password } = createUserSchema.parse(req.body);
     const hashedPassword = await new Argon2id().hash(password);
 
-    await authRepository.register({ email, password: hashedPassword });
+    await userRepository.create({ email, password: hashedPassword });
 
     return res.status(StatusCodes.CREATED).json(createSuccessResponse());
   } catch (err) {
