@@ -1,39 +1,25 @@
-type SuccessResponse = {
+type APIResponse = {
+  status: string;
+  message?: string;
+  data?: any;
+};
+
+type SuccessResponse = Partial<APIResponse> & {
   status: "success";
-  data?: any;
 };
 
-type SuccessParams = {
-  data?: any;
-};
-
-type FailResponse = {
+type FailResponse = Partial<APIResponse> & {
   status: "fail";
-  message?: string;
-  data?: any;
 };
 
-type FailParams = {
-  message?: string;
-  data?: any;
-};
-
-type ErrorResponse = {
+type ErrorResponse = Partial<APIResponse> & {
   status: "error";
-  message: string;
-  data?: any;
-  code?: number;
-};
-
-type ErrorParams = {
-  message: string;
-  data?: any;
   code?: number;
 };
 
 export function createSuccessResponse({
   data,
-}: SuccessParams = {}): SuccessResponse {
+}: Pick<SuccessResponse, "data"> = {}): SuccessResponse {
   return {
     status: "success",
     data,
@@ -43,7 +29,7 @@ export function createSuccessResponse({
 export function createFailResponse({
   message,
   data,
-}: FailParams): FailResponse {
+}: Pick<FailResponse, "message" | "data">): FailResponse {
   return {
     status: "fail",
     message,
@@ -55,7 +41,7 @@ export function createErrorResponse({
   message,
   data,
   code,
-}: ErrorParams): ErrorResponse {
+}: Pick<ErrorResponse, "message" | "data" | "code">): ErrorResponse {
   return {
     status: "error",
     message,
