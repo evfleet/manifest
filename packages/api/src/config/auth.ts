@@ -1,14 +1,14 @@
 import { BetterSqlite3Adapter } from "@lucia-auth/adapter-sqlite";
 import { Lucia } from "lucia";
 
-import { db } from "./sqlite.js";
+import { sqlite } from "../database/database.js";
 
-const adapter = new BetterSqlite3Adapter(db, {
+const adapter = new BetterSqlite3Adapter(sqlite, {
   user: "users",
   session: "sessions",
 });
 
-export const lucia = new Lucia(adapter, {
+export const auth = new Lucia(adapter, {
   sessionCookie: {
     attributes: {
       secure: process.env.NODE_ENV === "production",
@@ -18,6 +18,6 @@ export const lucia = new Lucia(adapter, {
 
 declare module "lucia" {
   interface Register {
-    Lucia: typeof lucia;
+    Lucia: typeof auth;
   }
 }

@@ -1,17 +1,16 @@
-import { db } from "../../config/sqlite.js";
-import { CreateUser } from "./user.validations.js";
+import { db } from "../../database/database.js";
+import { CreateUser } from "../../database/types.js";
 
-async function create({ email, password }: CreateUser) {
-  const sql = db.prepare(
-    "INSERT INTO users (email, hashed_password) VALUES (?, ?)"
-  );
-  const result = await sql.run(email, password);
+async function create({ email, hashed_password }: CreateUser) {
+  const result = await db
+    .insertInto("user")
+    .values({
+      email,
+      hashed_password,
+    })
+    .executeTakeFirst();
 
-  if (result.changes === 0) {
-    throw new Error("Failed to register user");
-  }
-
-  return;
+  return result;
 }
 
 export const userRepository = {
