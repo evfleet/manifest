@@ -4,7 +4,7 @@ import { StatusCodes } from "http-status-codes";
 import { Argon2id } from "oslo/password";
 
 import { createSuccessResponse } from "../../utils/create-response.js";
-import userRepository from "../user/user.repository.js";
+import { userRepository } from "../user/user.repository.js";
 import { createUserSchema } from "../user/user.validations.js";
 
 async function register(req: Request, res: Response, next: NextFunction) {
@@ -31,6 +31,6 @@ async function register(req: Request, res: Response, next: NextFunction) {
   }
 }
 
-export default {
+export const authController = {
   register,
 };

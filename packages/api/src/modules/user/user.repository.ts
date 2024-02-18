@@ -14,6 +14,6 @@ async function create({ email, password }: CreateUser) {
   return;
 }
 
-export default {
+export const userRepository = {
   create,
 };
