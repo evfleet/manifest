@@ -2,12 +2,14 @@ import { Express } from "express";
 import request from "supertest";
 
 import { build } from "../../src/app.js";
+import { createTestDatabase } from "../utils/database.js";
 
 describe("Auth", () => {
   let app: Express;
 
   beforeAll(async () => {
     app = await build();
+    await createTestDatabase();
   });
 
   describe("POST /register", () => {

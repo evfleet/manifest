@@ -12,7 +12,7 @@ async function register(req: Request, res: Response, next: NextFunction) {
     const { email, password } = createUserSchema.parse(req.body);
     const hashedPassword = await new Argon2id().hash(password);
 
-    await userRepository.create({ email, password: hashedPassword });
+    await userRepository.create({ email, hashed_password: hashedPassword });
 
     return res.status(StatusCodes.CREATED).json(createSuccessResponse());
   } catch (err) {
