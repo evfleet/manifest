@@ -3,9 +3,19 @@ type SuccessResponse = {
   data?: any;
 };
 
+type SuccessParams = {
+  data?: any;
+};
+
 type FailResponse = {
   status: "fail";
-  data: any;
+  message?: string;
+  data?: any;
+};
+
+type FailParams = {
+  message?: string;
+  data?: any;
 };
 
 type ErrorResponse = {
@@ -15,25 +25,37 @@ type ErrorResponse = {
   code?: number;
 };
 
-export function createSuccessResponse(data?: any): SuccessResponse {
+type ErrorParams = {
+  message: string;
+  data?: any;
+  code?: number;
+};
+
+export function createSuccessResponse({
+  data,
+}: SuccessParams = {}): SuccessResponse {
   return {
     status: "success",
     data,
   };
 }
 
-export function createFailResponse(data: any): FailResponse {
+export function createFailResponse({
+  message,
+  data,
+}: FailParams): FailResponse {
   return {
     status: "fail",
+    message,
     data,
   };
 }
 
-export function createErrorResponse(
-  message: string,
-  data?: any,
-  code?: number
-): ErrorResponse {
+export function createErrorResponse({
+  message,
+  data,
+  code,
+}: ErrorParams): ErrorResponse {
   return {
     status: "error",
     message,

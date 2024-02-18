@@ -8,7 +8,7 @@ describe("API Response Utils", () => {
   describe("createSuccessResponse", () => {
     it("should create a success response with data", () => {
       const data = { user: "Soandso" };
-      const response = createSuccessResponse(data);
+      const response = createSuccessResponse({ data });
       expect(response.status).toBe("success");
       expect(response.data).toBe(data);
     });
@@ -23,7 +23,7 @@ describe("API Response Utils", () => {
   describe("createFailResponse", () => {
     it("should create a fail response with data", () => {
       const data = { username: "An username is required" };
-      const response = createFailResponse(data);
+      const response = createFailResponse({ data });
       expect(response.status).toBe("fail");
       expect(response.data).toBe(data);
     });
@@ -32,7 +32,7 @@ describe("API Response Utils", () => {
   describe("createErrorResponse", () => {
     it("should create an error response with just a message", () => {
       const message = "Unexpected server error!";
-      const response = createErrorResponse(message);
+      const response = createErrorResponse({ message });
       expect(response.status).toBe("error");
       expect(response.message).toBe(message);
     });
@@ -40,7 +40,7 @@ describe("API Response Utils", () => {
     it("should create an error response with message and data", () => {
       const message = "Unexpected server error!";
       const data = { code: 500 };
-      const response = createErrorResponse(message, data);
+      const response = createErrorResponse({ message, data });
       expect(response.status).toBe("error");
       expect(response.message).toBe(message);
       expect(response.data).toBe(data);
@@ -50,7 +50,7 @@ describe("API Response Utils", () => {
       const message = "Unexpected server error!";
       const data = { message: "The hamster went missing" };
       const code = 500;
-      const response = createErrorResponse(message, data, code);
+      const response = createErrorResponse({ message, data, code });
       expect(response.status).toBe("error");
       expect(response.message).toBe(message);
       expect(response.data).toBe(data);

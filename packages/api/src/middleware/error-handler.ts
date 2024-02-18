@@ -14,17 +14,19 @@ export function errorHandler(
 ) {
   if (err instanceof ZodError) {
     return res.status(400).send(
-      createFailResponse(
-        err.errors.reduce(
+      createFailResponse({
+        data: err.errors.reduce(
           (obj, item) => ({
             ...obj,
             [item.path.join("-")]: item.message,
           }),
           {}
-        )
-      )
+        ),
+      })
     );
   }
 
-  return res.status(500).json(createErrorResponse("Unexpected server error"));
+  return res
+    .status(500)
+    .json(createErrorResponse({ message: "Unexpected server error" }));
 }

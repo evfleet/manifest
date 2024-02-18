@@ -18,12 +18,14 @@ async function register(req: Request, res: Response, next: NextFunction) {
   } catch (err) {
     if (err instanceof SqliteError && err.code === "SQLITE_CONSTRAINT_UNIQUE") {
       // return false positive if user already exists
+
       return res.status(StatusCodes.CREATED).json(
-        createSuccessResponse(
-          process.env.NODE_ENV !== "production" && {
-            message: "User already exists",
-          }
-        )
+        createSuccessResponse({
+          data:
+            process.env.NODE_ENV !== "production"
+              ? { message: "User already exists" }
+              : undefined,
+        })
       );
     }
 
