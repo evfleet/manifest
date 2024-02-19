@@ -1,4 +1,4 @@
-import { Generated, Insertable } from "kysely";
+import { Insertable } from "kysely";
 
 export interface Database {
   user: UserTable;
@@ -6,13 +6,13 @@ export interface Database {
 }
 
 interface UserTable {
-  id: Generated<string>;
+  id: string;
   email: string;
   hashed_password: string;
 }
 
 interface SessionTable {
-  id: Generated<string>;
+  id: string;
   user_id: string;
   expires_at: number;
 }
