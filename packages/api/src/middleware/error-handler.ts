@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { ZodError } from "zod";
 
-import { logger } from "../config/logger.js";
 import {
   createErrorResponse,
   createFailResponse,
@@ -27,7 +26,7 @@ export function errorHandler(
     );
   }
 
-  logger.error(err);
+  console.log(err);
 
   return res
     .status(500)

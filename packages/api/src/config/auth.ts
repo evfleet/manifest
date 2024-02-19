@@ -4,8 +4,8 @@ import { Lucia } from "lucia";
 import { sqlite } from "../database/database.js";
 
 const adapter = new BetterSqlite3Adapter(sqlite, {
-  user: "users",
-  session: "sessions",
+  user: "user",
+  session: "session",
 });
 
 export const auth = new Lucia(adapter, {
