@@ -1,3 +1,4 @@
+import cors from "cors";
 import express from "express";
 import { pinoHttp } from "pino-http";
 
@@ -9,6 +10,8 @@ export async function build() {
   const app = express();
 
   app.use(express.json());
+
+  app.use(cors());
 
   app.use(
     pinoHttp({
