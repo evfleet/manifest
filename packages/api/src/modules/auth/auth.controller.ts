@@ -12,6 +12,18 @@ import {
 import { userRepository } from "../user/user.repository.js";
 import { loginSchema, registerSchema } from "./auth.validations.js";
 
+async function authenticate(req: Request, res: Response, next: NextFunction) {
+  try {
+    if (!res.locals.user) {
+      return res.status(StatusCodes.UNAUTHORIZED).end();
+    }
+
+    return res.json("Logged in");
+  } catch (err) {
+    next(err);
+  }
+}
+
 async function register(req: Request, res: Response, next: NextFunction) {
   try {
     const { email, password } = registerSchema.parse(req.body);
@@ -89,6 +101,7 @@ async function login(req: Request, res: Response, next: NextFunction) {
 }
 
 export const authController = {
+  authenticate,
   register,
   login,
 };
