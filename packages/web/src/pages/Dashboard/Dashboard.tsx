@@ -1,7 +1,9 @@
+import { SidebarLayout } from "@/components/SidebarLayout";
+
 export function Dashboard() {
   return (
-    <div>
+    <SidebarLayout>
       <h1>Dashboard</h1>
-    </div>
+    </SidebarLayout>
   );
 }

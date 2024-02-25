@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
+import { Layout } from "@/components/Layout";
 import { useRegister } from "../../api/auth/register";
 import { FormField } from "../../components/FormField";
 import { PasswordField } from "../../components/PasswordField";
@@ -35,7 +36,7 @@ export function Register() {
   }
 
   return (
-    <div>
+    <Layout>
       <h1>Register</h1>
 
       <form onSubmit={handleSubmit(handleRegister)}>
@@ -55,6 +56,6 @@ export function Register() {
 
         <button type="submit">Register</button>
       </form>
-    </div>
+    </Layout>
   );
 }
