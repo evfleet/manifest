@@ -6,7 +6,6 @@ async function register<T>(params: T) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "X-Forwarded-Host": "http://localhost:8080",
     },
     body: JSON.stringify(params),
   });
