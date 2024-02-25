@@ -22,20 +22,25 @@ export async function build() {
   );
 
   app.use((req, res, next) => {
+    // lucia-auth csrf protection
+    // https://lucia-auth.com/guides/validate-session-cookies/express
+
     if (req.method === "GET") {
       return next();
     }
 
-    const hostHeader = req.headers.host ?? null;
-    const originHeader = (req.headers["x-forwarded-host"] as string) ?? null;
+    // removed host headers, allowed origins instead of using the host header
+    // probably needs to change for production
+    const originHeader = req.headers.origin ?? null;
 
     if (
       !originHeader ||
-      !hostHeader ||
-      !verifyRequestOrigin(originHeader, [hostHeader])
+      !verifyRequestOrigin(originHeader, ["http://localhost:5173"])
     ) {
       return res.status(403).end();
     }
+
+    return next();
   });
 
   app.use(async (req, res, next) => {
