@@ -1,7 +1,9 @@
+import { Layout } from "@/components/Layout";
+
 export function Landing() {
   return (
-    <div>
+    <Layout>
       <h1>Landing Page</h1>
-    </div>
+    </Layout>
   );
 }
