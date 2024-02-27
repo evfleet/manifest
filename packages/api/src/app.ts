@@ -74,11 +74,11 @@ export async function build() {
     return next();
   });
 
-  app.get("/", (req, res) => {
+  app.get("/api/", (req, res) => {
     res.send("Hello World!");
   });
 
-  app.use("/auth", authRouter);
+  app.use("/api/auth", authRouter);
 
   app.use(errorHandler);
 

@@ -1,11 +1,13 @@
 services:
-
   nginx:
     image: nginx:1.25.4
     ports:
       - "80:80"
     volumes:
       - ./nginx/default.conf:/etc/nginx/templates/default.conf.template
+  api:
+    build:
+      context: ./packages/api
   web:
     build:
       context: ./packages/web
