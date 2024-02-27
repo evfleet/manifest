@@ -8,6 +8,10 @@ services:
   api:
     build:
       context: ./packages/api
+    volumes:
+      - ./packages/api:/app
   web:
     build:
       context: ./packages/web
+    volumes:
+      - ./packages/web:/app
