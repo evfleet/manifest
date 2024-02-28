@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 
 export function Header() {
   return (
-    <header className="bg-blue-700">
-      <h1 className="text-white text-xl">Header</h1>
+    <header className="z-50 bg-blue-700 shadow-md">
+      <h1 className="text-xl text-white">Header</h1>
 
-      <ul className="text-white flex gap-2">
+      <ul className="flex gap-2 text-white">
         <li>
           <Link to="/">Home</Link>
         </li>
