@@ -1,4 +1,4 @@
-import { SidebarLayout } from "@/components/SidebarLayout";
+import { SidebarLayout } from "@/components/Layout";
 
 export function Dashboard() {
   return (

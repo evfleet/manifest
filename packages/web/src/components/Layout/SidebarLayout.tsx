@@ -1,6 +1,8 @@
 import { ReactNode } from "react";
 
 import { Header } from "../Header";
+import { Container } from "./Container";
+import { Main } from "./Main";
 
 type SidebarLayoutProps = {
   children: ReactNode;
@@ -8,14 +10,14 @@ type SidebarLayoutProps = {
 
 export function SidebarLayout({ children }: SidebarLayoutProps) {
   return (
-    <div>
+    <Container>
       <Header />
-      <div className="flex gap-2">
-        <aside>
+      <div className="flex flex-1">
+        <aside className="z-10 min-w-48 bg-white shadow-md">
           <p>Sidebar</p>
         </aside>
-        <main>{children}</main>
+        <Main>{children}</Main>
       </div>
-    </div>
+    </Container>
   );
 }
