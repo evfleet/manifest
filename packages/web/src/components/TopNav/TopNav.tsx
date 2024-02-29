@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export function TopNav() {
   return (
-    <header className="z-50 flex h-14 items-center  px-4 shadow-md">
+    <header className="z-50 flex h-14 items-center bg-white px-4 shadow-md">
       <div className="flex-1 text-xl font-semibold">
         <Link to="/">Manifest</Link>
       </div>

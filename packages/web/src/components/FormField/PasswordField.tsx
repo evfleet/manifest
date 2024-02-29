@@ -16,8 +16,10 @@ export function PasswordField<T extends FieldValues>({
   }
 
   return (
-    <div>
-      <label htmlFor="">{label || name}</label>
+    <div className="my-2">
+      <label htmlFor="" className="mr-2">
+        {label || name}
+      </label>
       <input type={showPassword ? "text" : "password"} {...register(name)} />
       {error && <span className="error-message">{error.message}</span>}
       <button type="button" onClick={togglePassword}>
