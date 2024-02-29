@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FieldValues } from "react-hook-form";
 
-import { FormFieldProps } from "../FormField";
+import { FormFieldProps } from "./FormField";
 
 export function PasswordField<T extends FieldValues>({
   name,

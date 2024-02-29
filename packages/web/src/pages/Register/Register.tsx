@@ -3,9 +3,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
 import { Layout } from "@/components/Layout";
-import { useRegister } from "../../api/auth/register";
-import { FormField } from "../../components/FormField";
-import { PasswordField } from "../../components/PasswordField";
+import { useRegister } from "@/api/auth/register";
+import { FormField, PasswordField } from "@/components/FormField";
 
 type Register = {
   email: string;
@@ -23,7 +22,7 @@ export function Register() {
       z.object({
         email: z.string().email(),
         password: z.string().min(8),
-      })
+      }),
     ),
   });
 
