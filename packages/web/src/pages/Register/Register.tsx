@@ -37,7 +37,7 @@ export function Register() {
   return (
     <Layout>
       <Content className="flex items-start justify-center">
-        <section className="mt-20 rounded-lg bg-white p-8 shadow-md">
+        <section className="mt-20 w-[400px] rounded-lg bg-white p-8 shadow-md ">
           <h1 className="text-xl font-semibold">Register</h1>
 
           <form onSubmit={handleSubmit(handleRegister)}>
@@ -55,9 +55,14 @@ export function Register() {
               error={errors.password}
             />
 
-            <button type="submit" className="bg-blue-700 px-4 py-2 text-white">
-              Register
-            </button>
+            <div className="mt-4 flex justify-end">
+              <button
+                type="submit"
+                className="bg-blue-700 px-4 py-2 text-white"
+              >
+                Register
+              </button>
+            </div>
           </form>
         </section>
       </Content>
