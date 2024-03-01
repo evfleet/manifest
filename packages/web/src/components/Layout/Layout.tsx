@@ -1,8 +1,7 @@
 import { ReactNode } from "react";
 
-import { Header } from "../Header";
+import { TopNav } from "../TopNav";
 import { Container } from "./Container";
-import { Main } from "./Main";
 
 type LayoutProps = {
   children: ReactNode;
@@ -11,8 +10,8 @@ type LayoutProps = {
 export function Layout({ children }: LayoutProps) {
   return (
     <Container>
-      <Header />
-      <Main>{children}</Main>
+      <TopNav />
+      {children}
     </Container>
   );
 }
