@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 
-async function register<T>(params: T) {
-  const response = await fetch("/api/auth/register", {
+async function login<T>(params: T) {
+  const response = await fetch("/api/auth/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -17,12 +17,12 @@ async function register<T>(params: T) {
   return response.json();
 }
 
-export function useRegister<T>() {
+export function useLogin<T>() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: register<T>,
+    mutationFn: login<T>,
     onSuccess: (data) => {
       console.log("success", data);
 
