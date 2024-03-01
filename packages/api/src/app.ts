@@ -1,6 +1,5 @@
 import cors from "cors";
 import express from "express";
-import { verifyRequestOrigin } from "lucia";
 import { pinoHttp } from "pino-http";
 
 import { auth } from "./config/auth.js";
@@ -25,6 +24,8 @@ export async function build() {
     // lucia-auth csrf protection
     // https://lucia-auth.com/guides/validate-session-cookies/express
 
+    /*
+
     if (req.method === "GET") {
       return next();
     }
@@ -39,6 +40,8 @@ export async function build() {
     ) {
       return res.status(403).end();
     }
+
+    */
 
     return next();
   });
