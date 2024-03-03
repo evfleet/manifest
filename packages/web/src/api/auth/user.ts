@@ -1,15 +1,23 @@
 import { useQuery } from "@tanstack/react-query";
 
+type APIResponse = {
+  data: Record<string, unknown>;
+};
+
 async function authenticate() {
   const response = await fetch("/api/auth");
 
   if (!response.ok) {
-    throw new Error("An error occurred");
+    if (response.status === 401) {
+      return false;
+    }
+
+    throw new Error("An error authenticating user");
   }
 
-  console.log("response", response);
+  const { data }: APIResponse = await response.json();
 
-  return response.json();
+  return data;
 }
 
 export function useUser() {

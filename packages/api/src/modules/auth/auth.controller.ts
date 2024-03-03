@@ -18,7 +18,11 @@ async function authenticate(req: Request, res: Response, next: NextFunction) {
       return res.status(StatusCodes.UNAUTHORIZED).end();
     }
 
-    return res.json("Logged in");
+    const { id, email } = res.locals.session;
+
+    return res
+      .status(StatusCodes.OK)
+      .json(createSuccessResponse({ data: { id, email } }));
   } catch (err) {
     next(err);
   }
@@ -86,7 +90,9 @@ async function login(req: Request, res: Response, next: NextFunction) {
     console.log("user", user);
     console.log("id type", typeof user.id);
 
-    const session = await auth.createSession(user.id, {});
+    const session = await auth.createSession(user.id, {
+      email: user.email,
+    });
 
     return res
       .appendHeader(

@@ -14,6 +14,7 @@ interface UserTable {
 interface SessionTable {
   id: string;
   user_id: string;
+  email: string;
   expires_at: number;
 }
 
