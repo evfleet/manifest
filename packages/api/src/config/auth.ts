@@ -9,6 +9,11 @@ const adapter = new BetterSqlite3Adapter(sqlite, {
 });
 
 export const auth = new Lucia(adapter, {
+  getSessionAttributes: (attributes) => {
+    return {
+      email: attributes.email,
+    };
+  },
   sessionCookie: {
     attributes: {
       secure: process.env.NODE_ENV === "production",
@@ -16,8 +21,13 @@ export const auth = new Lucia(adapter, {
   },
 });
 
+interface DatabaseSessionAttributes {
+  email: string;
+}
+
 declare module "lucia" {
   interface Register {
     Lucia: typeof auth;
+    DatabaseSessionAttributes: DatabaseSessionAttributes;
   }
 }
