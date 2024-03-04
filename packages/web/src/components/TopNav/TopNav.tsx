@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 import { useUser } from "@/api/auth/user";
+import { UserButton } from "./UserButton";
 
 export function TopNav() {
   const { data: user } = useUser();
@@ -13,17 +14,10 @@ export function TopNav() {
         <Link to="/">Manifest</Link>
       </div>
 
-      <nav>
-        {user ? (
-          <ul className="flex gap-2">
-            <li>
-              <Link to="/profile">Profile</Link>
-            </li>
-            <li>
-              <Link to="/logout">Logout</Link>
-            </li>
-          </ul>
-        ) : (
+      {user ? (
+        <UserButton />
+      ) : (
+        <nav>
           <ul className="flex gap-2">
             <li>
               <Link to="/register">Register</Link>
@@ -32,8 +26,8 @@ export function TopNav() {
               <Link to="/login">Login</Link>
             </li>
           </ul>
-        )}
-      </nav>
+        </nav>
+      )}
     </header>
   );
 }
