@@ -47,27 +47,38 @@ export function UserButton() {
     };
   }, [isOpen]);
 
-  console.log("needs semantic tags and aria attributes");
-
   return (
-    <div className="relative" ref={menuRef}>
-      <button ref={buttonRef} onClick={toggleMenu}>
-        Menu
+    <nav
+      ref={menuRef}
+      role="navigation"
+      aria-label="User menu"
+      className="relative flex"
+    >
+      <button
+        ref={buttonRef}
+        onClick={toggleMenu}
+        aria-expanded={isOpen}
+        aria-controls="user-menu"
+      >
+        <div className="size-8 rounded-full bg-blue-500"></div>
+        <span className="sr-only">User Menu</span>
       </button>
-      <div
+      <ul
+        id="user-menu"
         className={clsx([
-          isOpen ? "block" : "hidden",
-          "bg-red-500",
-          "absolute",
-          "top-10",
-          "right-0",
-          "w-48",
-          "h-48",
+          !isOpen && "hidden",
+          "absolute right-0 top-8",
+          "min-w-36",
+          "border-2 border-black bg-white",
         ])}
       >
-        <Link to="/profile">Profile</Link>
-        <Link to="/logout">Logout</Link>
-      </div>
-    </div>
+        <li>
+          <Link to="/profile">Profile</Link>
+        </li>
+        <li>
+          <Link to="/logout">Logout</Link>
+        </li>
+      </ul>
+    </nav>
   );
 }
