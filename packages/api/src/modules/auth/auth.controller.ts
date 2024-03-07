@@ -106,8 +106,26 @@ async function login(req: Request, res: Response, next: NextFunction) {
   }
 }
 
+async function logout(req: Request, res: Response, next: NextFunction) {
+  try {
+    if (!res.locals.session) {
+      return res.status(StatusCodes.UNAUTHORIZED).end();
+    }
+
+    await auth.invalidateSession(res.locals.session.id);
+
+    return res
+      .appendHeader("Set-Cookie", auth.createBlankSessionCookie().serialize())
+      .status(StatusCodes.OK)
+      .json(createSuccessResponse());
+  } catch (err) {
+    next(err);
+  }
+}
+
 export const authController = {
   authenticate,
   register,
   login,
+  logout,
 };
